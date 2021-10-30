@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "./App.css";
+import Footer from "./Components/Footer/Footer";
+import Home from "./Components/Home/Home";
+import Login from "./Components/Login/Login";
+import NavMenu from "./Components/NavMenu/NavMenu";
+import PlaceOrder from "./Components/PlaceOrder/PlaceOrder";
+import AuthProvider from "./Context/AuthProvider";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import AddNewEvent from "./Components/AddNewEvent/AddNewEvent";
+import MyBooking from "./Components/MyBooking/MyBooking";
+import AllBooking from "./Components/AllBooking/AllBooking";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthProvider>
+        <BrowserRouter>
+          <NavMenu></NavMenu>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <PrivateRoute path="/placeorder/:eventid">
+              <PlaceOrder></PlaceOrder>
+            </PrivateRoute>
+            <PrivateRoute path="/addnewevent">
+              <AddNewEvent></AddNewEvent>
+            </PrivateRoute>
+            <PrivateRoute path="/mybooking/:mail">
+              <MyBooking></MyBooking>
+            </PrivateRoute>
+            <PrivateRoute path="/manageallbooking">
+              <AllBooking></AllBooking>
+            </PrivateRoute>
+          </Switch>
+        </BrowserRouter>
+        <Footer></Footer>
+      </AuthProvider>
     </div>
   );
 }
