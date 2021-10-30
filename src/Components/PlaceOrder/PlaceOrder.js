@@ -1,19 +1,19 @@
 import Button from "@restart/ui/esm/Button";
 import React, { useEffect, useState } from "react";
-import { Card, Form } from "react-bootstrap";
+import { Card, Form, Spinner } from "react-bootstrap";
 import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import useAuth from "../../Context/useAuth";
 import Event from "../Event/Event";
 
 const PlaceOrder = () => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const { eventid } = useParams();
   const [bookevent, setBookevent] = useState({});
   const history = useHistory();
 
   useEffect(() => {
-    const url = `http://localhost:5000/placeorder/${eventid}`;
+    const url = `https://salty-escarpment-09439.herokuapp.com/placeorder/${eventid}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBookevent(data));
@@ -30,7 +30,7 @@ const PlaceOrder = () => {
 
     const bookedEvent = { email, eventName, eventDes, eventPrice, eventImg };
 
-    fetch("http://localhost:5000/bookconfirm", {
+    fetch("https://salty-escarpment-09439.herokuapp.com/bookconfirm", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -43,9 +43,12 @@ const PlaceOrder = () => {
         history.push("/home");
       });
   };
+  if (isLoading) {
+    return <Spinner animation="border" variant="primary"></Spinner>;
+  }
   return (
     <div className="d-lg-flex justify-content-center align-items-center py-5">
-      <div className="px-5">
+      <div className="px-lg-5 mx-3">
         <Card style={{ width: "20rem", height: "460px" }}>
           <Card.Img variant="top" src={bookevent.img} />
           <Card.Body>
@@ -61,7 +64,7 @@ const PlaceOrder = () => {
         <h1 className="text-center text-primary fw-bold my-5">
           Booking Information
         </h1>
-        <Form className="w-50 mx-auto">
+        <Form className="w-75 mx-auto">
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Control type="text" placeholder={user.displayName} readOnly />
           </Form.Group>

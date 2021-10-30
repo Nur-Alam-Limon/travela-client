@@ -15,7 +15,7 @@ const Hero = () => {
         </h4>
         <button
           type="button"
-          className="btn btn-primary px-4 py-2 my-lg-2"
+          className="btn btn-primary px-lg-4 py-lg-2 py-sm-1 my-lg-2"
           style={{ fontSize: "1.2vw" }}
         >
           Explore Destinations

@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <div>
       <h1 className="text-center text-primary fw-bold my-5">Contact Us</h1>
-      <Form className="w-50 mx-auto">
+      <Form className="w-75 mx-auto">
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Control type="text" placeholder="Name" />
         </Form.Group>

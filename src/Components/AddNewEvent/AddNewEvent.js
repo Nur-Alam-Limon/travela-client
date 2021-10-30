@@ -16,7 +16,7 @@ const AddNewEvent = () => {
     const img = imgRef.current.value;
     const newEvent = { name, description, price, img };
 
-    fetch("http://localhost:5000/events", {
+    fetch("https://salty-escarpment-09439.herokuapp.com/events", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -33,9 +33,9 @@ const AddNewEvent = () => {
     imgRef.current.value = "";
   };
   return (
-    <div className="py-5">
+    <div className="py-5" style={{ minHeight: "100vh" }}>
       <h1 className="text-primary mb-5">Add New Event</h1>
-      <Form className="w-50 mx-auto">
+      <Form className="w-75 mx-auto">
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Control type="text" placeholder="Event Name" ref={nameRef} />
         </Form.Group>

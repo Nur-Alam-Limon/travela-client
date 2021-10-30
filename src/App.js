@@ -10,6 +10,7 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import AddNewEvent from "./Components/AddNewEvent/AddNewEvent";
 import MyBooking from "./Components/MyBooking/MyBooking";
 import AllBooking from "./Components/AllBooking/AllBooking";
+import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             <PrivateRoute path="/manageallbooking">
               <AllBooking></AllBooking>
             </PrivateRoute>
+            <Route path="*">
+              <NotFound></NotFound>
+            </Route>
           </Switch>
         </BrowserRouter>
         <Footer></Footer>
