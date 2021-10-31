@@ -71,7 +71,7 @@ const AllBooking = () => {
                 </Card.Title>
                 <Card.Title>
                   <small>
-                    Status :{" "}
+                    Status :
                     <span className="text-primary">{event.eventStatus}</span>
                   </small>
                 </Card.Title>
