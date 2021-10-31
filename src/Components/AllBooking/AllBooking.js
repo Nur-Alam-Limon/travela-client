@@ -33,7 +33,6 @@ const AllBooking = () => {
     setStatus(updateStatus);
 
     const url = `https://salty-escarpment-09439.herokuapp.com/status/${id}`;
-    console.log(url);
     fetch(url, {
       method: "PUT",
       headers: {
