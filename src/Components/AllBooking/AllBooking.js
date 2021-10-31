@@ -1,12 +1,12 @@
 import Button from "@restart/ui/esm/Button";
 import React, { useEffect, useState } from "react";
 import { Card, Spinner } from "react-bootstrap";
-import { useParams } from "react-router";
 import useAuth from "../../Context/useAuth";
 
 const AllBooking = () => {
   const { isLoading } = useAuth();
   const [allBookedEvent, setAllBookedEvent] = useState([]);
+  const [status, setStatus] = useState({});
 
   useEffect(() => {
     const url = `https://salty-escarpment-09439.herokuapp.com/allbooking`;
@@ -26,6 +26,29 @@ const AllBooking = () => {
         .then((data) => {});
     }
   };
+
+  const handleEventStatus = (id) => {
+    const status1 = "approved";
+    const updateStatus = { status: status1 };
+    setStatus(updateStatus);
+
+    const url = `https://salty-escarpment-09439.herokuapp.com/status/${id}`;
+    console.log(url);
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(status),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          alert("Status Updated");
+        }
+      });
+  };
+
   if (isLoading) {
     return <Spinner animation="border" variant="primary"></Spinner>;
   }
@@ -37,7 +60,7 @@ const AllBooking = () => {
       <div className="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 mx-lg-5 g-4 mx-3 pt-3">
         {allBookedEvent.map((event) => (
           <div className="col">
-            <Card style={{ width: "20rem", height: "460px" }}>
+            <Card style={{ width: "20rem", height: "520px" }}>
               <Card.Img variant="top" src={event.eventImg} />
               <Card.Body>
                 <Card.Title className="text-primary fw-bold">
@@ -47,13 +70,25 @@ const AllBooking = () => {
                 <Card.Title className="text-primary">
                   ${event.eventPrice}
                 </Card.Title>
-
+                <Card.Title>
+                  <small>
+                    Status :{" "}
+                    <span className="text-primary">{event.eventStatus}</span>
+                  </small>
+                </Card.Title>
                 <Button
                   onClick={() => handleDeleteEvent(event._id)}
                   variant="primary"
                   className="bg-danger text-white px-5 py-1 fw-bold book-now"
                 >
                   Cancel Booking
+                </Button>
+                <Button
+                  onClick={() => handleEventStatus(event._id)}
+                  variant="primary"
+                  className="bg-success text-white px-5 py-1 mt-2 book-now"
+                >
+                  Approve Status
                 </Button>
               </Card.Body>
             </Card>

@@ -27,8 +27,16 @@ const PlaceOrder = () => {
     const eventDes = bookevent.description;
     const eventPrice = bookevent.price;
     const eventImg = bookevent.img;
+    const eventStatus = "pending";
 
-    const bookedEvent = { email, eventName, eventDes, eventPrice, eventImg };
+    const bookedEvent = {
+      email,
+      eventName,
+      eventDes,
+      eventPrice,
+      eventImg,
+      eventStatus,
+    };
 
     fetch("https://salty-escarpment-09439.herokuapp.com/bookconfirm", {
       method: "POST",
