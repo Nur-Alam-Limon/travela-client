@@ -43,7 +43,7 @@ const AllBooking = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          alert("Status Updated");
+          alert("Click 2 time Approve Button for Status Update");
         }
       });
   };
