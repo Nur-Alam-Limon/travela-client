@@ -7,7 +7,7 @@ const Events = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("https://salty-escarpment-09439.herokuapp.com/events")
+    fetch("https://travela-server.onrender.com/events")
       .then((res) => res.json())
       .then((data) => setEvents(data));
   });

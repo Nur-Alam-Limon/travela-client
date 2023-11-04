@@ -13,7 +13,7 @@ const PlaceOrder = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const url = `https://salty-escarpment-09439.herokuapp.com/placeorder/${eventid}`;
+    const url = `https://travela-server.onrender.com/placeorder/${eventid}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBookevent(data));
@@ -38,7 +38,7 @@ const PlaceOrder = () => {
       eventStatus,
     };
 
-    fetch("https://salty-escarpment-09439.herokuapp.com/bookconfirm", {
+    fetch("https://travela-server.onrender.com/bookconfirm", {
       method: "POST",
       headers: {
         "content-type": "application/json",

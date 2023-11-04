@@ -16,7 +16,7 @@ const AddNewEvent = () => {
     const img = imgRef.current.value;
     const newEvent = { name, description, price, img };
 
-    fetch("https://salty-escarpment-09439.herokuapp.com/events", {
+    fetch("https://travela-server.onrender.com/events", {
       method: "post",
       headers: {
         "content-type": "application/json",

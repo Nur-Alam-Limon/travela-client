@@ -11,7 +11,7 @@ const MyBooking = () => {
   const { mail } = useParams();
 
   useEffect(() => {
-    const url = `https://salty-escarpment-09439.herokuapp.com/mybooking/${mail}`;
+    const url = `https://travela-server.onrender.com/mybooking/${mail}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBookedEvent(data));
@@ -20,7 +20,7 @@ const MyBooking = () => {
   const handleDeleteEvent = (id) => {
     const proceed = window.confirm("Sure to delete?");
     if (proceed) {
-      const url = `https://salty-escarpment-09439.herokuapp.com/delete/${id}`;
+      const url = `https://travela-server.onrender.com/delete/${id}`;
       fetch(url, {
         method: "DELETE",
       })
